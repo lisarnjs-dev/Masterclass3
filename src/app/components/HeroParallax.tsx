@@ -62,67 +62,6 @@ export const HeroParallax = ({
       className="min-h-screen md:h-[300vh] py-20 md:py-40 overflow-hidden antialiased relative flex flex-col self-auto md:[perspective:1000px] md:[transform-style:preserve-3d]"
     >
       <Header />
-
-      {/* Mobile version - simple grid */}
-      <div className="md:hidden px-6 mt-8 pb-10">
-        <div className="grid grid-cols-1 gap-4 max-w-md mx-auto">
-          {products.slice(0, 6).map((product) => (
-            <div
-              key={product.title}
-              className="border border-white/10 bg-white/5 backdrop-blur-sm p-5 rounded-lg"
-            >
-              <div className="text-[10px] text-white/40 mb-2 tracking-wider uppercase">
-                {product.category}
-              </div>
-              <h3 className="text-base font-bold mb-2 text-white">
-                {product.title}
-              </h3>
-              <p className="text-xs text-white/60 leading-relaxed">
-                {product.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Desktop version - parallax */}
-      <motion.div
-        style={{
-          rotateX,
-          rotateZ,
-          translateY,
-          opacity,
-        }}
-        className="hidden md:block"
-      >
-        <motion.div className="flex flex-row-reverse space-x-reverse space-x-20 mb-20">
-          {firstRow.map((product) => (
-            <ProductCard
-              product={product}
-              translate={translateX}
-              key={product.title}
-            />
-          ))}
-        </motion.div>
-        <motion.div className="flex flex-row mb-20 space-x-20">
-          {secondRow.map((product) => (
-            <ProductCard
-              product={product}
-              translate={translateXReverse}
-              key={product.title}
-            />
-          ))}
-        </motion.div>
-        <motion.div className="flex flex-row-reverse space-x-reverse space-x-20">
-          {thirdRow.map((product) => (
-            <ProductCard
-              product={product}
-              translate={translateX}
-              key={product.title}
-            />
-          ))}
-        </motion.div>
-      </motion.div>
     </div>
   );
 };
@@ -227,19 +166,44 @@ export const Header = () => {
         className="grid grid-cols-3 gap-4 md:gap-8 text-center mt-10 max-w-2xl"
       >
         <div>
-          <div className="text-4xl md:text-5xl font-bold mb-2">
+          <div className="text-4xl md:text-5xl font-bold mb-2 text-cyan-400">
             <CountingNumber target={500} />
           </div>
           <div className="text-white/60 text-xs md:text-sm">수강생</div>
         </div>
         <div>
-          <div className="text-4xl md:text-5xl font-bold mb-2">5주</div>
+          <div className="text-4xl md:text-5xl font-bold mb-2 text-cyan-400">5주</div>
           <div className="text-white/60 text-xs md:text-sm">완성 프로그램</div>
         </div>
         <div>
-          <div className="text-4xl md:text-5xl font-bold mb-2">3기</div>
+          <div className="text-4xl md:text-5xl font-bold mb-2 text-cyan-400">3기</div>
           <div className="text-white/60 text-xs md:text-sm">마지막 모집</div>
         </div>
+      </motion.div>
+
+      {/* CTA Buttons */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.7 }}
+        className="flex flex-col sm:flex-row gap-3 mt-10"
+      >
+        <a
+          href="https://www.latpeed.com/products/_55MW"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center h-12 px-8 bg-cyan-400 text-black font-bold text-sm rounded-md hover:bg-cyan-300 transition-colors shadow-[0_0_24px_rgba(34,211,238,0.25)]"
+        >
+          3기 신청하기
+        </a>
+        <a
+          href="https://super-human-lisakkwon.notion.site/AI-Product-Sprint-329463bf88db802794b0c5aac55a227d?source=copy_link"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center h-12 px-8 border border-cyan-400/40 text-cyan-400 font-medium text-sm rounded-md hover:bg-cyan-400/10 transition-colors"
+        >
+          가이드 및 샘플강의 보러가기 →
+        </a>
       </motion.div>
     </div>
   );
